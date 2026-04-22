@@ -9,34 +9,22 @@ organized by programming language and locale. Based on the [refactoring.guru](ht
 
 ```
 skills/
-├── java/
+├── go/
 │   ├── smells/
 │   │   ├── en/
 │   │   │   ├── long-method/SKILL.md
 │   │   │   ├── large-class/SKILL.md
-│   │   │   └── primitive-obsession/SKILL.md
-│   │   └── pt-br/
-│   │       ├── long-method/SKILL.md
-│   │       ├── large-class/SKILL.md
-│   │       └── primitive-obsession/SKILL.md
-│   ├── techniques/
-│   │   ├── en/
-│   │   │   ├── extract-method/SKILL.md
-│   │   │   ├── move-method/SKILL.md
-│   │   │   └── replace-conditional-with-polymorphism/SKILL.md
-│   │   └── pt-br/
-│   │       ├── extract-method/SKILL.md
-│   │       ├── move-method/SKILL.md
-│   │       └── replace-conditional-with-polymorphism/SKILL.md
-│   └── templates/
+│   │   │   └── ...                      # 23 smells total
+│   │   └── pt-br/                       # same 23 smells
+│   └── techniques/
 │       ├── en/
-│       │   ├── code-review-instruction/SKILL.md
-│       │   └── refactoring-task-prompt/SKILL.md
-│       └── pt-br/
-│           ├── code-review-instruction/SKILL.md
-│           └── refactoring-task-prompt/SKILL.md
-├── python/              # same structure
-└── php/                 # same structure
+│       │   ├── extract-method/SKILL.md
+│       │   ├── move-method/SKILL.md
+│       │   └── ...                      # 19 techniques total
+│       └── pt-br/                       # same 19 techniques
+├── java/                                # same structure + templates/
+├── python/                              # same structure + templates/
+└── php/                                 # same structure + templates/
 ```
 
 Each `SKILL.md` follows a consistent format: problem definition, when to apply, step-by-step refactoring,
@@ -59,7 +47,7 @@ Avoids downloading packages you won't use:
 ```bash
 git clone --filter=blob:none --sparse https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-git sparse-checkout set skills/java   # replace with: skills/python or skills/php
+git sparse-checkout set skills/java   # replace with: skills/go, skills/python or skills/php
 ```
 
 ### Option 3 — Clone everything, then remove unused packages
@@ -67,7 +55,7 @@ git sparse-checkout set skills/java   # replace with: skills/python or skills/ph
 ```bash
 git clone https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-rm -rf skills/python skills/php       # keep only what you need
+rm -rf skills/go skills/python skills/php   # keep only what you need
 ```
 
 ---
@@ -76,15 +64,16 @@ rm -rf skills/python skills/php       # keep only what you need
 
 | Language | Smells | Techniques | Templates | Locales |
 |----------|--------|------------|-----------|---------|
-| Java     | 3      | 3          | 2         | `en`, `pt-br` |
-| Python   | 3      | 3          | 2         | `en`, `pt-br` |
-| PHP      | 3      | 3          | 2         | `en`, `pt-br` |
+| Go       | 23     | 19         | —         | `en`, `pt-br` |
+| Java     | 23     | 19         | 2         | `en`, `pt-br` |
+| Python   | 23     | 19         | 2         | `en`, `pt-br` |
+| PHP      | 23     | 19         | 2         | `en`, `pt-br` |
 
-**Smells:** Long Method · Large Class · Primitive Obsession
+**Smells (23):** Alternative Classes with Different Interfaces · Comments · Data Class · Data Clumps · Dead Code · Divergent Change · Duplicate Code · Feature Envy · Inappropriate Intimacy · Incomplete Library Class · Large Class · Lazy Class · Long Method · Long Parameter List · Message Chains · Middle Man · Parallel Inheritance Hierarchies · Primitive Obsession · Refused Bequest · Shotgun Surgery · Speculative Generality · Switch Statements · Temporary Field
 
-**Techniques:** Extract Method · Move Method · Replace Conditional with Polymorphism
+**Techniques (19):** Decompose Conditional · Extract Class · Extract Method · Extract Variable · Hide Delegate · Inline Class · Inline Method · Inline Temp · Introduce Parameter Object · Move Field · Move Method · Remove Assignments to Parameters · Remove Middle Man · Replace Conditional with Polymorphism · Replace Method with Method Object · Replace Nested Conditional with Guard Clauses · Replace Temp with Query · Split Temporary Variable · Substitute Algorithm
 
-**Templates:** Code Review Instruction · Refactoring Task Prompt
+**Templates (Java · Python · PHP only):** Code Review Instruction · Refactoring Task Prompt
 
 > All content is available in English (`en/`) and Brazilian Portuguese (`pt-br/`).
 
@@ -96,10 +85,10 @@ rm -rf skills/python skills/php       # keep only what you need
 
 1. Create the directory structure:
    ```bash
-   mkdir -p skills/go/{smells,techniques,templates}/{en,pt-br}
+   mkdir -p skills/rust/{smells,techniques,templates}/{en,pt-br}
    ```
 2. Add the skill folders following the existing structure of any language as reference
-3. Use `skills/java/smells/en/long-method/SKILL.md` as a template for format and sections
+3. Use `skills/go/smells/en/long-method/SKILL.md` as a template for format and sections
 
 ### Adding a new skill
 
