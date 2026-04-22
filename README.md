@@ -66,7 +66,7 @@ rm -rf skills/go skills/python skills/php   # keep only what you need
 
 | Language | Smells | Techniques | Templates | Locales |
 |----------|--------|------------|-----------|---------|
-| Go       | 23     | 19         | —         | `en`, `pt-br` |
+| Go       | 23     | 19         | 2         | `en`, `pt-br` |
 | Java     | 23     | 19         | 2         | `en`, `pt-br` |
 | Python   | 23     | 19         | 2         | `en`, `pt-br` |
 | PHP      | 23     | 19         | 2         | `en`, `pt-br` |
@@ -75,7 +75,7 @@ rm -rf skills/go skills/python skills/php   # keep only what you need
 
 **Techniques (19):** Decompose Conditional · Extract Class · Extract Method · Extract Variable · Hide Delegate · Inline Class · Inline Method · Inline Temp · Introduce Parameter Object · Move Field · Move Method · Remove Assignments to Parameters · Remove Middle Man · Replace Conditional with Polymorphism · Replace Method with Method Object · Replace Nested Conditional with Guard Clauses · Replace Temp with Query · Split Temporary Variable · Substitute Algorithm
 
-**Templates (Java · Python · PHP only):** Code Review Instruction · Refactoring Task Prompt
+**Templates:** Code Review Instruction · Refactoring Task Prompt
 
 > All content is available in English (`en/`) and Brazilian Portuguese (`pt-br/`).
 

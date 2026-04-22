@@ -7,7 +7,7 @@ organizada por linguagem de programação e idioma. Baseada no catálogo do [ref
 
 ## Estrutura do repositório
 
-```
+```text
 skills/
 ├── go/
 │   ├── smells/
@@ -62,18 +62,18 @@ rm -rf skills/go skills/python skills/php   # mantenha apenas o que precisar
 
 ## Conteúdo disponível
 
-| Linguagem | Smells | Técnicas | Templates | Idiomas |
-|-----------|--------|----------|-----------|---------|
-| Go        | 23     | 19       | —         | `en`, `pt-br` |
-| Java      | 23     | 19       | 2         | `en`, `pt-br` |
-| Python    | 23     | 19       | 2         | `en`, `pt-br` |
-| PHP       | 23     | 19       | 2         | `en`, `pt-br` |
+| Linguagem | Smells | Técnicas | Templates | Idiomas           |
+|-----------|--------|----------|-----------|-------------------|
+| Go        | 23     | 19       | 2         | `en`, `pt-br`     |
+| Java      | 23     | 19       | 2         | `en`, `pt-br`     |
+| Python    | 23     | 19       | 2         | `en`, `pt-br`     |
+| PHP       | 23     | 19       | 2         | `en`, `pt-br`     |
 
 **Smells (23):** Alternative Classes with Different Interfaces · Comments · Data Class · Data Clumps · Dead Code · Divergent Change · Duplicate Code · Feature Envy · Inappropriate Intimacy · Incomplete Library Class · Large Class · Lazy Class · Long Method · Long Parameter List · Message Chains · Middle Man · Parallel Inheritance Hierarchies · Primitive Obsession · Refused Bequest · Shotgun Surgery · Speculative Generality · Switch Statements · Temporary Field
 
 **Técnicas (19):** Decompose Conditional · Extract Class · Extract Method · Extract Variable · Hide Delegate · Inline Class · Inline Method · Inline Temp · Introduce Parameter Object · Move Field · Move Method · Remove Assignments to Parameters · Remove Middle Man · Replace Conditional with Polymorphism · Replace Method with Method Object · Replace Nested Conditional with Guard Clauses · Replace Temp with Query · Split Temporary Variable · Substitute Algorithm
 
-**Templates (Java · Python · PHP apenas):** Code Review Instruction · Refactoring Task Prompt
+**Templates:** Code Review Instruction · Refactoring Task Prompt
 
 > Todo o conteúdo está disponível em inglês (`en/`) e português brasileiro (`pt-br/`).
 
@@ -84,9 +84,11 @@ rm -rf skills/go skills/python skills/php   # mantenha apenas o que precisar
 ### Adicionando uma nova linguagem
 
 1. Crie a estrutura de diretórios:
+
    ```bash
    mkdir -p skills/rust/{smells,techniques,templates}/{en,pt-br}
    ```
+
 2. Adicione as pastas de skills seguindo a estrutura existente de qualquer linguagem como referência
 3. Use `skills/go/smells/en/long-method/SKILL.md` como modelo para o formato e as seções
 
