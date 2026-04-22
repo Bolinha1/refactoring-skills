@@ -7,26 +7,51 @@ organized by programming language and locale. Based on the [refactoring.guru](ht
 
 ---
 
+## Install via skills CLI
+
+Use with any AI agent that supports [skills.sh](https://skills.sh):
+
+```bash
+# Install all languages
+npx skills add Bolinha1/refactoring-skills
+
+# Install a specific language
+npx skills add Bolinha1/refactoring-skills --skill refactoring-java
+npx skills add Bolinha1/refactoring-skills --skill refactoring-go
+npx skills add Bolinha1/refactoring-skills --skill refactoring-python
+npx skills add Bolinha1/refactoring-skills --skill refactoring-php
+
+# Install prompt templates only
+npx skills add Bolinha1/refactoring-skills --skill refactoring-templates
+```
+
+Once installed, the agent automatically identifies smells and applies the right refactoring technique when reviewing code.
+
+---
+
 ## Repository structure
 
 ```
-skills/
-├── go/
-│   ├── smells/
-│   │   ├── en/
-│   │   │   ├── long-method/SKILL.md
-│   │   │   ├── large-class/SKILL.md
-│   │   │   └── ...                      # 23 smells total
-│   │   └── pt-br/                       # same 23 smells
-│   └── techniques/
-│       ├── en/
-│       │   ├── extract-method/SKILL.md
-│       │   ├── move-method/SKILL.md
-│       │   └── ...                      # 19 techniques total
-│       └── pt-br/                       # same 19 techniques
-├── java/                                # same structure + templates/
-├── python/                              # same structure + templates/
-└── php/                                 # same structure + templates/
+skills/                              ← skills.sh-compatible entry points
+├── refactoring-go/
+│   ├── SKILL.md                     ← entry point (locale-aware)
+│   ├── en/
+│   │   ├── smells.md                ← index of 23 smells
+│   │   ├── techniques.md            ← index of 19 techniques
+│   │   └── details/
+│   │       ├── smells/              ← full content per smell
+│   │       └── techniques/          ← full content per technique
+│   └── pt-br/                       ← same structure in Portuguese
+├── refactoring-java/                ← same structure
+├── refactoring-python/              ← same structure
+├── refactoring-php/                 ← same structure
+└── refactoring-templates/           ← code review + refactoring prompts
+
+catalog/                             ← granular reference (original structure)
+├── go/smells/{en,pt-br}/*/SKILL.md
+├── java/...
+├── python/...
+└── php/...
 ```
 
 Each `SKILL.md` follows a consistent format: problem definition, when to apply, step-by-step refactoring,
@@ -34,7 +59,7 @@ before/after code examples, negative examples (what NOT to do), and benefits.
 
 ---
 
-## How to use
+## Clone the full catalog
 
 ### Option 1 — Clone everything (simplest)
 
@@ -49,7 +74,7 @@ Avoids downloading packages you won't use:
 ```bash
 git clone --filter=blob:none --sparse https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-git sparse-checkout set skills/java   # replace with: skills/go, skills/python or skills/php
+git sparse-checkout set catalog/java   # replace with: catalog/go, catalog/python or catalog/php
 ```
 
 ### Option 3 — Clone everything, then remove unused packages
@@ -57,7 +82,7 @@ git sparse-checkout set skills/java   # replace with: skills/go, skills/python o
 ```bash
 git clone https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-rm -rf skills/go skills/python skills/php   # keep only what you need
+rm -rf catalog/go catalog/python catalog/php   # keep only what you need
 ```
 
 ---
@@ -87,13 +112,16 @@ rm -rf skills/go skills/python skills/php   # keep only what you need
 
 1. Create the directory structure:
    ```bash
-   mkdir -p skills/rust/{smells,techniques,templates}/{en,pt-br}
+   mkdir -p catalog/rust/{smells,techniques,templates}/{en,pt-br}
    ```
 2. Add the skill folders following the existing structure of any language as reference
-3. Use `skills/go/smells/en/long-method/SKILL.md` as a template for format and sections
+3. Use `catalog/go/smells/en/long-method/SKILL.md` as a template for format and sections
+4. Add a corresponding entry in `skills/refactoring-rust/` following the pattern of any existing language skill
 
 ### Adding a new skill
 
-1. Create a folder under `{lang}/smells/{locale}/skill-name/` and add `SKILL.md`
-2. Create the corresponding folder under `{lang}/techniques/{locale}/skill-name/` and add `SKILL.md`
-3. Keep section names consistent: Problem, Solution, When to apply, Steps, Example, Negative examples, Benefits
+1. Create a folder under `catalog/{lang}/smells/{locale}/skill-name/` and add `SKILL.md`
+2. Create the corresponding folder under `catalog/{lang}/techniques/{locale}/skill-name/` and add `SKILL.md`
+3. Copy the detail files to `skills/refactoring-{lang}/{locale}/details/`
+4. Update the index files `skills/refactoring-{lang}/{locale}/smells.md` and `techniques.md`
+5. Keep section names consistent: Problem, Solution, When to apply, Steps, Example, Negative examples, Benefits
