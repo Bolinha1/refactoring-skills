@@ -1,5 +1,7 @@
 # Refactoring Skills
 
+> [Leia em Português](docs/README.pt-br.md)
+
 A structured knowledge base for identifying code smells and applying refactoring techniques,
 organized by programming language and locale. Based on the [refactoring.guru](https://refactoring.guru) catalog.
 
