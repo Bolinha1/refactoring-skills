@@ -1,4 +1,4 @@
-# TÉCNICA: Replace Nested Conditional with Guard Clauses — Go
+# TÉCNICA: Substituir Condicional Aninhado por Guard Clauses — Go
 
 ## Fonte
 Baseado em: https://refactoring.guru/replace-nested-conditional-with-guard-clauses

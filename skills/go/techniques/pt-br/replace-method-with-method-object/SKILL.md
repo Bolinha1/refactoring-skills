@@ -1,4 +1,4 @@
-# TÉCNICA: Replace Method with Method Object — Go
+# TÉCNICA: Substituir Método por Objeto Método — Go
 
 ## Fonte
 Baseado em: https://refactoring.guru/replace-method-with-method-object

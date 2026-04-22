@@ -1,4 +1,4 @@
-# TÉCNICA: Split Temporary Variable — Go
+# TÉCNICA: Dividir Variável Temporária — Go
 
 ## Fonte
 Baseado em: https://refactoring.guru/split-temporary-variable

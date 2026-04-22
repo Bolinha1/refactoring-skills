@@ -1,4 +1,4 @@
-# TÉCNICA: Substitute Algorithm — Go
+# TÉCNICA: Substituir Algoritmo — Go
 
 ## Fonte
 Baseado em: https://refactoring.guru/substitute-algorithm

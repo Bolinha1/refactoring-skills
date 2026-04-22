@@ -1,4 +1,4 @@
-# TÉCNICA: Replace Temp with Query — Go
+# TÉCNICA: Substituir Variável Temporária por Consulta — Go
 
 ## Fonte
 Baseado em: https://refactoring.guru/replace-temp-with-query
