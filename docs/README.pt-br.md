@@ -30,7 +30,7 @@ Após instalado, o agente identifica automaticamente os smells e aplica a técni
 ## Estrutura do repositório
 
 ```text
-skills/                              ← entry points compatíveis com skills.sh
+skills/
 ├── refactoring-go/
 │   ├── SKILL.md                     ← entry point (com suporte a locale)
 │   ├── en/
@@ -44,12 +44,6 @@ skills/                              ← entry points compatíveis com skills.sh
 ├── refactoring-python/              ← mesma estrutura
 ├── refactoring-php/                 ← mesma estrutura
 └── refactoring-templates/           ← prompts de code review e refatoração
-
-catalog/                             ← referência granular (estrutura original)
-├── go/smells/{en,pt-br}/*/SKILL.md
-├── java/...
-├── python/...
-└── php/...
 ```
 
 Cada `SKILL.md` segue um formato consistente: definição do problema, quando aplicar, passo a passo da refatoração,
@@ -57,7 +51,7 @@ exemplos de código antes/depois, exemplos negativos (o que NÃO fazer) e benef�
 
 ---
 
-## Clonar o catálogo completo
+## Clonar o repositório
 
 ### Opção 1 — Clonar tudo (mais simples)
 
@@ -72,7 +66,7 @@ Evita baixar pacotes que você não vai usar:
 ```bash
 git clone --filter=blob:none --sparse https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-git sparse-checkout set catalog/java   # substitua por: catalog/go, catalog/python ou catalog/php
+git sparse-checkout set skills/refactoring-java   # substitua por: refactoring-go, refactoring-python ou refactoring-php
 ```
 
 ### Opção 3 — Clonar tudo e remover o que não precisa
@@ -80,7 +74,7 @@ git sparse-checkout set catalog/java   # substitua por: catalog/go, catalog/pyth
 ```bash
 git clone https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-rm -rf catalog/go catalog/python catalog/php   # mantenha apenas o que precisar
+rm -rf skills/refactoring-go skills/refactoring-python skills/refactoring-php   # mantenha apenas o que precisar
 ```
 
 ---
@@ -108,20 +102,18 @@ rm -rf catalog/go catalog/python catalog/php   # mantenha apenas o que precisar
 
 ### Adicionando uma nova linguagem
 
-1. Crie a estrutura de diretórios:
+1. Crie a estrutura dentro de `skills/refactoring-rust/`:
 
    ```bash
-   mkdir -p catalog/rust/{smells,techniques,templates}/{en,pt-br}
+   mkdir -p skills/refactoring-rust/{en,pt-br}/details/{smells,techniques}
    ```
 
-2. Adicione as pastas de skills seguindo a estrutura existente de qualquer linguagem como referência
-3. Use `catalog/go/smells/en/long-method/SKILL.md` como modelo para o formato e as seções
-4. Adicione uma entrada correspondente em `skills/refactoring-rust/` seguindo o padrão de qualquer linguagem existente
+2. Adicione um `SKILL.md` de entrada seguindo o padrão de qualquer linguagem existente
+3. Use `skills/refactoring-go/en/details/smells/long-method.md` como modelo para o formato e as seções
 
 ### Adicionando uma nova skill
 
-1. Crie uma pasta em `catalog/{lang}/smells/{locale}/nome-do-smell/` e adicione `SKILL.md`
-2. Crie a pasta correspondente em `catalog/{lang}/techniques/{locale}/nome-da-tecnica/` e adicione `SKILL.md`
-3. Copie os arquivos de detalhe para `skills/refactoring-{lang}/{locale}/details/`
-4. Atualize os arquivos de índice `skills/refactoring-{lang}/{locale}/smells.md` e `techniques.md`
-5. Mantenha os nomes das seções consistentes: Problema, Solução, Quando aplicar, Passos, Exemplo, Exemplos negativos, Benefícios
+1. Adicione o arquivo de detalhe: `skills/refactoring-{lang}/{locale}/details/smells/{nome}.md`
+2. Adicione a técnica correspondente: `skills/refactoring-{lang}/{locale}/details/techniques/{nome}.md`
+3. Atualize os arquivos de índice `skills/refactoring-{lang}/{locale}/smells.md` e `techniques.md`
+4. Mantenha os nomes das seções consistentes: Problema, Solução, Quando aplicar, Passos, Exemplo, Exemplos negativos, Benefícios
