@@ -5,26 +5,45 @@ organizada por linguagem de programação e idioma. Baseada no catálogo do [ref
 
 ---
 
+## Instalar via skills CLI
+
+Use com qualquer agente de IA que suporte o [skills.sh](https://skills.sh):
+
+```bash
+# Instalar todas as linguagens
+npx skills add Bolinha1/refactoring-skills
+
+# Instalar uma linguagem específica
+npx skills add Bolinha1/refactoring-skills --skill refactoring-java
+npx skills add Bolinha1/refactoring-skills --skill refactoring-go
+npx skills add Bolinha1/refactoring-skills --skill refactoring-python
+npx skills add Bolinha1/refactoring-skills --skill refactoring-php
+
+# Instalar apenas os templates de prompt
+npx skills add Bolinha1/refactoring-skills --skill refactoring-templates
+```
+
+Após instalado, o agente identifica automaticamente os smells e aplica a técnica de refatoração correta ao revisar código.
+
+---
+
 ## Estrutura do repositório
 
 ```text
 skills/
-├── go/
-│   ├── smells/
-│   │   ├── en/
-│   │   │   ├── long-method/SKILL.md
-│   │   │   ├── large-class/SKILL.md
-│   │   │   └── ...                      # 23 smells no total
-│   │   └── pt-br/                       # mesmos 23 smells
-│   └── techniques/
-│       ├── en/
-│       │   ├── extract-method/SKILL.md
-│       │   ├── move-method/SKILL.md
-│       │   └── ...                      # 19 técnicas no total
-│       └── pt-br/                       # mesmas 19 técnicas
-├── java/                                # mesma estrutura + templates/
-├── python/                              # mesma estrutura + templates/
-└── php/                                 # mesma estrutura + templates/
+├── refactoring-go/
+│   ├── SKILL.md                     ← entry point (com suporte a locale)
+│   ├── en/
+│   │   ├── smells.md                ← índice dos 23 smells
+│   │   ├── techniques.md            ← índice das 19 técnicas
+│   │   └── details/
+│   │       ├── smells/              ← conteúdo completo por smell
+│   │       └── techniques/          ← conteúdo completo por técnica
+│   └── pt-br/                       ← mesma estrutura em português
+├── refactoring-java/                ← mesma estrutura
+├── refactoring-python/              ← mesma estrutura
+├── refactoring-php/                 ← mesma estrutura
+└── refactoring-templates/           ← prompts de code review e refatoração
 ```
 
 Cada `SKILL.md` segue um formato consistente: definição do problema, quando aplicar, passo a passo da refatoração,
@@ -32,7 +51,7 @@ exemplos de código antes/depois, exemplos negativos (o que NÃO fazer) e benef�
 
 ---
 
-## Como usar
+## Clonar o repositório
 
 ### Opção 1 — Clonar tudo (mais simples)
 
@@ -47,7 +66,7 @@ Evita baixar pacotes que você não vai usar:
 ```bash
 git clone --filter=blob:none --sparse https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-git sparse-checkout set skills/java   # substitua por: skills/go, skills/python ou skills/php
+git sparse-checkout set skills/refactoring-java   # substitua por: refactoring-go, refactoring-python ou refactoring-php
 ```
 
 ### Opção 3 — Clonar tudo e remover o que não precisa
@@ -55,7 +74,7 @@ git sparse-checkout set skills/java   # substitua por: skills/go, skills/python 
 ```bash
 git clone https://github.com/Bolinha1/refactoring-skills.git
 cd refactoring-skills
-rm -rf skills/go skills/python skills/php   # mantenha apenas o que precisar
+rm -rf skills/refactoring-go skills/refactoring-python skills/refactoring-php   # mantenha apenas o que precisar
 ```
 
 ---
@@ -83,17 +102,18 @@ rm -rf skills/go skills/python skills/php   # mantenha apenas o que precisar
 
 ### Adicionando uma nova linguagem
 
-1. Crie a estrutura de diretórios:
+1. Crie a estrutura dentro de `skills/refactoring-rust/`:
 
    ```bash
-   mkdir -p skills/rust/{smells,techniques,templates}/{en,pt-br}
+   mkdir -p skills/refactoring-rust/{en,pt-br}/details/{smells,techniques}
    ```
 
-2. Adicione as pastas de skills seguindo a estrutura existente de qualquer linguagem como referência
-3. Use `skills/go/smells/en/long-method/SKILL.md` como modelo para o formato e as seções
+2. Adicione um `SKILL.md` de entrada seguindo o padrão de qualquer linguagem existente
+3. Use `skills/refactoring-go/en/details/smells/long-method.md` como modelo para o formato e as seções
 
 ### Adicionando uma nova skill
 
-1. Crie uma pasta em `{lang}/smells/{locale}/nome-do-smell/` e adicione `SKILL.md`
-2. Crie a pasta correspondente em `{lang}/techniques/{locale}/nome-da-tecnica/` e adicione `SKILL.md`
-3. Mantenha os nomes das seções consistentes: Problema, Solução, Quando aplicar, Passos, Exemplo, Exemplos negativos, Benefícios
+1. Adicione o arquivo de detalhe: `skills/refactoring-{lang}/{locale}/details/smells/{nome}.md`
+2. Adicione a técnica correspondente: `skills/refactoring-{lang}/{locale}/details/techniques/{nome}.md`
+3. Atualize os arquivos de índice `skills/refactoring-{lang}/{locale}/smells.md` e `techniques.md`
+4. Mantenha os nomes das seções consistentes: Problema, Solução, Quando aplicar, Passos, Exemplo, Exemplos negativos, Benefícios
